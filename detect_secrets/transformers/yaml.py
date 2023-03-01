@@ -223,12 +223,6 @@ class YAMLFileParser:
 
         node.__line__ = line + 1    # type: ignore
 
-        if node.tag.endswith(':map'):
-            # Reset the inline flow mapping key when the end of a mapping is reached
-            # to avoid complications with empty mappings
-            self.is_inline_flow_mapping_key = False
-            return _tag_dict_values(cast(yaml.nodes.MappingNode, node))
-
         # TODO: Not sure if need to do :seq
 
         return node
